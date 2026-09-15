@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ============================================================
+    STEP 1: Update the browser tab title with your name
+    Replace "Your Name" below with your actual full name
+  ============================================================ -->
+  <title>Your Name's Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --sidebar-w: 260px;
+      --white: #ffffff;
+      --off: #f7f7f7;
+      --border: #e8e8e8;
+      --text: #3d3d3d;
+      --muted: #888;
+      --accent: #5e81ac;
+      --accent-dark: #4a6a90;
+      --sans: 'Source Sans 3', sans-serif;
+      --serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--off);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    #sidebar {
+      width: var(--sidebar-w);
+      min-height: 100vh;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 100;
+      overflow-y: auto;
+    }
+    .sidebar-brand {
+      padding: 2rem 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-brand h1 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .sidebar-brand p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .sidebar-nav { padding: 1.5rem 0; flex: 1; }
+    .sidebar-nav ul { list-style: none; }
+    .sidebar-nav ul li a {
+      display: block;
+      padding: 0.55rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .sidebar-nav ul li a:hover,
+    .sidebar-nav ul li a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: #f0f4f8;
+    }
+    .sidebar-footer {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .sidebar-footer p {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .social-icons { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .social-icons a:hover { color: var(--accent); border-color: var(--accent); background: #f0f4f8; }
+
+    /* ── MAIN ── */
+    #main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; }
+    .inner { padding: 2.5rem; max-width: 900px; }
+
+    /* ── HEADER BAR ── */
+    #header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    #header .logo {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+    #header .logo strong { color: var(--accent); }
+    .header-icons { display: flex; gap: 0.75rem; }
+    .header-icons a { color: var(--muted); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .header-icons a:hover { color: var(--accent); }
+
+    /* ── BANNER ── */
+    #banner {
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+      background: var(--white);
+      padding: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+    #banner .content { flex: 1; }
+    #banner .content header h1 {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    #banner .content header p {
+      font-size: 1.05rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+    #banner .content p {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.75;
+      max-width: 560px;
+    }
+    #banner .image {
+      flex-shrink: 0;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--border);
+      background: var(--off);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #banner .image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #banner .image .placeholder {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header { border-bottom: 3px solid var(--accent); margin-bottom: 2rem; padding-bottom: 0.6rem; }
+    .section-header h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 600; color: var(--text); }
+
+    /* ── PROJECTS GRID ── */
+    .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+    .post-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .post-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .post-card .card-image {
+      width: 100%; height: 160px;
+      overflow: hidden;
+      background: #eef2f7;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .post-card .card-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .post-card .card-image .img-placeholder {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    .post-card .card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+    .post-card h3 { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+    .post-card p { font-size: 0.82rem; color: #666; line-height: 1.65; flex: 1; margin-bottom: 1rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 4px;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: var(--accent-dark); }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    #contact h2 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--accent);
+    }
+    .contact-list { list-style: none; }
+    .contact-list li {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-list li:last-child { border-bottom: none; }
+    .contact-list li i { color: var(--accent); width: 18px; text-align: center; }
+    .contact-list li a { color: var(--accent); text-decoration: none; }
+    .contact-list li a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding: 1.5rem 2.5rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      #sidebar { display: none; }
+      #main { margin-left: 0; }
+      .inner { padding: 1.5rem; }
+      #header { padding: 1rem 1.5rem; }
+      #banner { flex-direction: column-reverse; padding: 1.5rem; gap: 1.5rem; }
+      #banner .image { width: 120px; height: 120px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+    SIDEBAR
+    Update your name, job title and social media links below
+  ============================================================ -->
+  <nav id="sidebar">
+    <div class="sidebar-brand">
+
+      <!-- STEP 2: Replace "Your Name" with your full name -->
+      <h1>Your Name</h1>
+
+      <!-- STEP 3: Replace with your job title -->
+      <p>Data Analyst · Excel · SQL · Power BI</p>
+
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#banner" class="active">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Find me on</p>
+      <div class="social-icons">
+
+        <!-- STEP 4: Replace the href links below with your own social media URLs -->
+        <!-- Remove any icon you don't use by deleting that entire <a>...</a> line -->
+
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://medium.com/@YOUR-MEDIUM-USERNAME" title="Medium">
+          <i class="fab fa-medium-m"></i>
+        </a>
+        <a href="https://twitter.com/YOUR-TWITTER-USERNAME" title="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/YOUR-INSTAGRAM-USERNAME" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="mailto:YOUR-EMAIL@gmail.com" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div id="main">
+
+    <!-- HEADER BAR -->
+    <header id="header">
+      <a href="index.html" class="logo"><strong>Portfolio</strong></a>
+      <div class="header-icons">
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://medium.com/@YOUR-MEDIUM-USERNAME" title="Medium">
+          <i class="fab fa-medium-m"></i>
+        </a>
+        <a href="https://twitter.com/YOUR-TWITTER-USERNAME" title="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/YOUR-INSTAGRAM-USERNAME" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </header>
+
+    <div class="inner">
+
+      <!-- ============================================================
+        BANNER / ABOUT SECTION
+      ============================================================ -->
+      <section id="banner">
+        <div class="content">
+          <header>
+
+            <!-- STEP 5: Replace "Your Name" with your full name -->
+            <h1>Hi, I'm Your Name</h1>
+
+            <!-- STEP 6: Replace with your professional title -->
+            <p>A Data Analyst skilled in Excel, SQL and Power BI</p>
+
+          </header>
+
+          <!-- STEP 7: Replace this paragraph with your own bio.
+               Write 3-4 sentences about:
+               - Your background and experience
+               - The tools you work with
+               - What kind of work you are open to (jobs, freelance, consulting)
+          -->
+          <p>
+            I am a data analyst with hands-on experience turning raw data into clear,
+            actionable insights that help businesses make smarter decisions. I work with
+            Power BI, MySQL, Excel and Python to clean data, build interactive dashboards
+            and uncover trends. I am open to data analyst roles, freelance projects and
+            consulting work. Feel free to connect or reach out.
+          </p>
+        </div>
+
+        <!-- ============================================================
+          PROFILE PHOTO
+          HOW TO ADD YOUR PHOTO:
+          1. Save your photo inside the images/ folder — name it profile.jpg
+          2. Delete the <div class="placeholder">...</div> section below
+          3. Remove the  and  around the <img> tag below to activate it
+        ============================================================ -->
+        <div class="image">
+          <!-- <img src="images/profile.jpg" alt="Your Name" /> -->
+          <div class="placeholder">
+            Add your photo here.<br />
+            Save it as profile.jpg<br />
+            inside the images/ folder.<br />
+            Then follow the instructions<br />
+            in the code above.
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============================================================
+        PROJECTS SECTION
+      ============================================================ -->
+      <section id="projects">
+        <div class="section-header">
+          <h2>My Projects</h2>
+        </div>
+        <div class="posts">
+
+          <!-- ============================================================
+            PROJECT CARD — DEMO CARD (Replace this with your own project)
+            Follow Steps A through D below to customise this card:
+          ============================================================ -->
+          <article class="post-card">
+
+            <div class="card-image">
+              <!-- STEP A — ADD YOUR PROJECT IMAGE:
+                   1. Take a screenshot of your project (dashboard, report, etc.)
+                   2. Save the image inside the images/ folder e.g. images/project1.png
+                   3. Delete the <div class="img-placeholder">...</div> section below
+                   4. Remove the  and  around the <img> tag below to activate it
+              -->
+              <!-- <img src="images/project1.png" alt="Project Title" /> -->
+              <div class="img-placeholder">
+                Add your project image here.<br />
+                Save it in the images/ folder<br />
+                then follow Step A in the code.
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <!-- STEP B — Replace "Demo Project Title" with your actual project name -->
+              <h3>Demo Project Title</h3>
+
+              <!-- STEP C — Replace this text with a short description of your project -->
+              <p>
+                This is a short description of your project. Explain what data you analysed,
+                what tools you used, and what insight or outcome was produced. Keep it to
+                2 or 3 sentences.
+              </p>
+
+              <!-- STEP D — Replace the # in href="..." with your actual project link.
+                   This can be a Medium article, Power BI published report,
+                   GitHub repository, or LinkedIn post URL.
+              -->
+              <a href="#" class="btn" target="_blank">View Project</a>
+
+            </div>
+          </article>
+
+          <!-- ============================================================
+            TO ADD MORE PROJECTS:
+            Copy everything from the opening <article class="post-card">
+            all the way down to the closing </article> tag directly above,
+            then paste it here. Repeat Steps A through D for each new card.
+          ============================================================ -->
+
+        </div>
+      </section>
+
+      <!-- ============================================================
+        CONTACT SECTION
+      ============================================================ -->
+      <section id="contact">
+        <h2>Get in Touch</h2>
+        <ul class="contact-list">
+
+          <!-- STEP 8: Replace with your email address in both places -->
+          <li>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:YOUR-EMAIL@gmail.com">YOUR-EMAIL@gmail.com</a>
+          </li>
+
+          <!-- STEP 9: Replace with your LinkedIn profile URL and display text -->
+          <li>
+            <i class="fab fa-linkedin-in"></i>
+            <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/" target="_blank">
+              linkedin.com/in/YOUR-LINKEDIN-USERNAME
+            </a>
+          </li>
+
+          <!-- STEP 10: Replace with your city and country -->
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            Your City, Your Country
+          </li>
+
+        </ul>
+      </section>
+
+    </div><!-- .inner -->
+
+    <!-- FOOTER -->
+    <!-- STEP 11: Replace "Your Name" with your full name -->
+    <footer>
+      <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+  </div><!-- #main -->
+
+  <script>
+    // Highlight active sidebar link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
