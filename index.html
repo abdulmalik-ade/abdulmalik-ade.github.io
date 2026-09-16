@@ -3,38 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Abdulmalik Tajudeen | Data Analyst & Data Scientist</title>
+  <title>Abdulmalik Tajudeen | Data Scientist & Analyst</title>
 
-  <!-- Google Fonts & Font Awesome Icons -->
+  <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    /* ── RESET & CSS VARIABLES ── */
+    /* ── GLOBAL STYLES & VARS ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     :root {
-      --sidebar-w: 280px;
-      --bg-body: #f8faf9;
+      --sidebar-w: 270px;
+      --bg-body: #f4f7f5;
       --bg-card: #ffffff;
       --border: #e2e8f0;
       --text-dark: #0f172a;
       --text-muted: #64748b;
       
-      /* Professional Emerald Green Palette */
-      --primary-dark: #0f382c;    /* Deep Forest Green (Sidebar background) */
-      --primary: #1b4d3e;         /* Main Accent Green */
-      --primary-hover: #2a7b62;   /* Bright Emerald Highlights */
-      --primary-light: #e8f5e9;   /* Soft Tint for Badges */
-      --accent-gold: #38bdf8;
-      
+      /* Emerald Green Theme */
+      --primary-dark: #0b2920;   /* Deep Emerald Background */
+      --primary: #124e3f;        /* Main Professional Accent */
+      --primary-hover: #1b735d;  /* Interactive Highlight Green */
+      --primary-light: #e8f5f1;  /* Soft Badge Background */
+      --accent-glow: rgba(27, 115, 93, 0.15);
+
       --font-sans: 'Plus Jakarta Sans', sans-serif;
       --font-serif: 'Source Serif 4', Georgia, serif;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-      --shadow-md: 0 10px 30px -5px rgba(15, 56, 44, 0.08);
+      --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+      --shadow-md: 0 12px 30px rgba(11, 41, 32, 0.08);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -49,7 +50,17 @@
       overflow-x: hidden;
     }
 
-    /* ── DESKTOP SIDEBAR ── */
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* ── SIDEBAR (DESKTOP) ── */
     #sidebar {
       width: var(--sidebar-w);
       min-height: 100vh;
@@ -58,47 +69,44 @@
       flex-direction: column;
       position: fixed;
       top: 0; left: 0;
-      z-index: 100;
+      z-index: 1000;
       color: #ffffff;
       transition: var(--transition);
     }
 
     .sidebar-brand {
-      padding: 2.5rem 2rem 1.5rem;
+      padding: 2.2rem 1.75rem 1.5rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .sidebar-brand h1 {
       font-family: var(--font-serif);
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 0.3rem;
-      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
     }
 
     .sidebar-brand p {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: #94a3b8;
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
     }
 
     .sidebar-nav {
-      padding: 2rem 0;
+      padding: 1.75rem 0;
       flex: 1;
     }
 
-    .sidebar-nav ul {
-      list-style: none;
-    }
+    .sidebar-nav ul { list-style: none; }
 
     .sidebar-nav ul li a {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 0.8rem 2rem;
+      padding: 0.85rem 1.75rem;
       font-size: 0.95rem;
       font-weight: 500;
       color: #cbd5e1;
@@ -114,37 +122,28 @@
       border-left-color: var(--primary-hover);
     }
 
-    .sidebar-nav ul li a i {
-      font-size: 1rem;
-      width: 20px;
-      text-align: center;
-    }
+    .sidebar-nav ul li a i { font-size: 1rem; width: 20px; text-align: center; }
 
     .sidebar-footer {
-      padding: 1.5rem 2rem;
+      padding: 1.5rem 1.75rem;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .sidebar-footer p {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #94a3b8;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
-    .social-icons {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
+    .social-icons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
     .social-icons a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
+      width: 36px; height: 36px;
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -161,7 +160,7 @@
       transform: translateY(-2px);
     }
 
-    /* ── MOBILE HEADER BAR ── */
+    /* ── MOBILE NAVBAR ── */
     .mobile-header {
       display: none;
       position: fixed;
@@ -171,13 +170,13 @@
       padding: 0 1.25rem;
       align-items: center;
       justify-content: space-between;
-      z-index: 200;
+      z-index: 1100;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .mobile-header .logo {
       font-family: var(--font-serif);
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #ffffff;
       text-decoration: none;
@@ -187,12 +186,12 @@
       background: none;
       border: none;
       color: #ffffff;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       cursor: pointer;
       padding: 0.5rem;
     }
 
-    /* ── MAIN CONTENT AREA ── */
+    /* ── MAIN LAYOUT ── */
     #main {
       margin-left: var(--sidebar-w);
       flex: 1;
@@ -201,67 +200,63 @@
       flex-direction: column;
     }
 
-    .inner {
-      padding: 3rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    /* Top Topbar Navigation inside Main */
     .top-bar {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      padding: 1.25rem 4rem;
+      padding: 1rem 3rem;
       background: var(--bg-card);
       border-bottom: 1px solid var(--border);
     }
 
-    .top-bar-icons {
-      display: flex;
-      gap: 1rem;
-    }
+    .top-bar-icons { display: flex; gap: 1rem; }
+    .top-bar-icons a { color: var(--text-muted); font-size: 1rem; text-decoration: none; transition: var(--transition); }
+    .top-bar-icons a:hover { color: var(--primary); }
 
-    .top-bar-icons a {
-      color: var(--text-muted);
-      font-size: 1rem;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .top-bar-icons a:hover {
-      color: var(--primary);
+    .inner {
+      padding: 2.5rem 3rem;
+      max-width: 1150px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     /* ── HERO BANNER ── */
     #hero {
-      background: var(--bg-card);
+      background: linear-gradient(135deg, #ffffff 0%, #f7faf8 100%);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 3rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
       box-shadow: var(--shadow-sm);
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 2.5rem;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 6px; height: 100%;
+      background: var(--primary);
     }
 
     .hero-content h1 {
       font-family: var(--font-serif);
-      font-size: 2.6rem;
+      font-size: 2.5rem;
       font-weight: 700;
       color: var(--text-dark);
-      line-height: 1.2;
-      margin-bottom: 0.4rem;
+      line-height: 1.25;
+      margin-bottom: 0.3rem;
     }
 
     .hero-subtitle {
       font-size: 1.1rem;
       color: var(--primary);
       font-weight: 600;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.25rem;
     }
 
     .hero-skills {
@@ -275,51 +270,55 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 5px 12px;
+      padding: 6px 14px;
       background: var(--primary-light);
       color: var(--primary);
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      font-weight: 700;
       border-radius: 20px;
+      border: 1px solid rgba(18, 78, 63, 0.1);
+      transition: var(--transition);
+    }
+
+    .skill-badge:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateY(-2px);
     }
 
     .hero-bio {
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       color: var(--text-muted);
       line-height: 1.75;
       margin-bottom: 2rem;
-      max-width: 620px;
+      max-width: 650px;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 11px 22px;
+      padding: 12px 24px;
       border-radius: 8px;
       font-size: 0.9rem;
       font-weight: 600;
       text-decoration: none;
       transition: var(--transition);
-      cursor: pointer;
     }
 
     .btn-primary {
       background: var(--primary);
       color: #ffffff;
       border: 1px solid var(--primary);
+      box-shadow: 0 4px 12px var(--accent-glow);
     }
 
     .btn-primary:hover {
-      background: var(--primary-dark);
-      border-color: var(--primary-dark);
+      background: var(--primary-hover);
       transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--accent-glow);
     }
 
     .btn-outline {
@@ -334,54 +333,101 @@
     }
 
     .hero-image {
-      width: 170px;
-      height: 170px;
+      width: 175px; height: 175px;
       border-radius: 50%;
       overflow: hidden;
       border: 4px solid #ffffff;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      box-shadow: var(--shadow-md);
       background: var(--bg-body);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       flex-shrink: 0;
     }
 
     .hero-image img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
     }
 
-    .hero-image .placeholder {
-      font-size: 0.75rem;
+    /* ── STATS HIGHLIGHT BAR ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+      border-color: rgba(18, 78, 63, 0.2);
+    }
+
+    .stat-icon {
+      width: 46px; height: 46px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .stat-info h4 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.1;
+    }
+
+    .stat-info p {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      text-align: center;
-      padding: 1rem;
+      font-weight: 600;
     }
 
     /* ── SECTION HEADERS ── */
-    .section-title {
-      margin-bottom: 1.75rem;
-    }
+    .section-title { margin-bottom: 2rem; }
 
     .section-title h2 {
       font-family: var(--font-serif);
-      font-size: 1.8rem;
+      font-size: 1.85rem;
       font-weight: 700;
       color: var(--text-dark);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 24px;
+      background: var(--primary);
+      border-radius: 2px;
     }
 
     .section-title p {
       font-size: 0.95rem;
       color: var(--text-muted);
+      margin-left: 14px;
     }
 
     /* ── PROJECTS GRID ── */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 1.75rem;
       margin-bottom: 3.5rem;
     }
@@ -389,7 +435,7 @@
     .project-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -397,13 +443,13 @@
     }
 
     .project-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       box-shadow: var(--shadow-md);
-      border-color: rgba(27, 77, 62, 0.2);
+      border-color: rgba(18, 78, 63, 0.25);
     }
 
     .project-image {
-      height: 190px;
+      height: 200px;
       width: 100%;
       background: #edf2f7;
       overflow: hidden;
@@ -411,14 +457,17 @@
     }
 
     .project-image img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
     }
 
     .project-placeholder {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -428,7 +477,7 @@
     }
 
     .project-placeholder i {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-bottom: 8px;
       color: var(--primary);
     }
@@ -451,15 +500,15 @@
       font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 4px;
-      background: #f1f5f9;
+      background: var(--primary-light);
       color: var(--primary);
       letter-spacing: 0.03em;
     }
 
     .project-content h3 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--text-dark);
       margin-bottom: 0.6rem;
@@ -467,17 +516,17 @@
     }
 
     .project-content p {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 1.25rem;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
       flex: 1;
     }
 
     .project-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       color: var(--primary);
       font-size: 0.88rem;
       font-weight: 700;
@@ -487,22 +536,22 @@
 
     .project-link:hover {
       color: var(--primary-hover);
-      gap: 10px;
+      gap: 12px;
     }
 
-    /* ── CONTACT SECTION ── */
+    /* ── CONTACT ── */
     #contact {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 2.5rem;
       margin-bottom: 3rem;
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
       margin-top: 1.5rem;
     }
 
@@ -510,7 +559,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      padding: 1.2rem;
+      padding: 1.25rem;
       background: var(--bg-body);
       border-radius: 10px;
       border: 1px solid var(--border);
@@ -522,20 +571,21 @@
     .contact-item:hover {
       border-color: var(--primary);
       transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
     }
 
     .contact-item i {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--primary);
-      width: 24px;
+      width: 28px;
       text-align: center;
     }
 
     .contact-item-info span {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
     }
 
@@ -550,74 +600,62 @@
     footer {
       text-align: center;
       padding: 2rem;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
       border-top: 1px solid var(--border);
       background: var(--bg-card);
       margin-top: auto;
     }
 
-    /* ── RESPONSIVE MEDIA QUERIES ── */
+    /* ── RESPONSIVE STYLES ── */
     @media (max-width: 992px) {
       #sidebar {
         transform: translateX(-100%);
-        width: 260px;
-        box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+        width: 100%;
+        max-width: 300px;
+        box-shadow: var(--shadow-lg);
       }
 
       #sidebar.active {
         transform: translateX(0);
       }
 
-      .mobile-header {
-        display: flex;
-      }
+      .mobile-header { display: flex; }
 
       #main {
         margin-left: 0;
         margin-top: 65px;
       }
 
-      .top-bar {
-        display: none;
-      }
-
-      .inner {
-        padding: 1.75rem 1.25rem;
-      }
+      .top-bar { display: none; }
+      .inner { padding: 1.5rem 1rem; }
 
       #hero {
         grid-template-columns: 1fr;
         text-align: center;
-        padding: 2rem 1.5rem;
+        padding: 2rem 1.25rem;
         gap: 1.5rem;
       }
+
+      #hero::before { width: 100%; height: 5px; top: 0; left: 0; }
 
       .hero-image {
         margin: 0 auto;
         order: -1;
-        width: 140px;
-        height: 140px;
+        width: 130px; height: 130px;
       }
 
-      .hero-skills, .hero-actions {
-        justify-content: center;
-      }
+      .hero-skills, .hero-actions { justify-content: center; }
 
-      .hero-bio {
-        margin-left: auto;
-        margin-right: auto;
-      }
+      .section-title p { margin-left: 0; }
 
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
+      .projects-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- MOBILE NAVIGATION TOP BAR -->
+  <!-- MOBILE TOP BAR HEADER -->
   <header class="mobile-header">
     <a href="#" class="logo">Abdulmalik Tajudeen</a>
     <button class="mobile-toggle" id="menuToggle" aria-label="Toggle Menu">
@@ -625,7 +663,7 @@
     </button>
   </header>
 
-  <!-- DESKTOP & MOBILE SIDEBAR NAV -->
+  <!-- SIDEBAR NAVIGATION -->
   <aside id="sidebar">
     <div class="sidebar-brand">
       <h1>Abdulmalik Tajudeen</h1>
@@ -651,10 +689,10 @@
     </div>
   </aside>
 
-  <!-- MAIN CONTENT AREA -->
+  <!-- MAIN CONTENT CONTAINER -->
   <div id="main">
     
-    <!-- TOP BAR (DESKTOP ONLY) -->
+    <!-- DESKTOP TOP BAR -->
     <header class="top-bar">
       <div class="top-bar-icons">
         <a href="https://www.linkedin.com/in/abdulmalik-tajudeen-86602b38b" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
@@ -666,22 +704,21 @@
     <main class="inner">
 
       <!-- HERO / ABOUT SECTION -->
-      <section id="hero">
+      <section id="hero" class="animate-in">
         <div class="hero-content">
-          <h1>Hi, I'm Abdulmalik</h1>
+          <h1>Hi, I'm Abdulmalik Tajudeen</h1>
           <p class="hero-subtitle">Data Analyst & Data Scientist</p>
 
           <div class="hero-skills">
             <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
             <span class="skill-badge"><i class="fas fa-database"></i> SQL</span>
             <span class="skill-badge"><i class="fas fa-chart-pie"></i> Power BI</span>
-             <span class="skill-badge"><i class="fas fa-chart-pie"></i> Excel</span>
             <span class="skill-badge"><i class="fas fa-chart-line"></i> Tableau</span>
             <span class="skill-badge"><i class="fas fa-brain"></i> Machine Learning</span>
           </div>
 
           <p class="hero-bio">
-            I specialize in transforming raw, unstructured data into actionable insights, interactive visual dashboards, and predictive models. By combining structured analytical frameworks with business acumen, I assist organizations in making informed, data-driven decisions.
+            I specialize in transforming raw data into clear, actionable insights, interactive visual dashboards, and predictive models that support data-driven business decisions. My experience covers data cleaning, exploratory analysis, SQL queries, and designing intuitive analytics solutions.
           </p>
 
           <div class="hero-actions">
@@ -691,19 +728,42 @@
         </div>
 
         <div class="hero-image">
-          <img src="profile.jpg" alt="Abdulmalik Tajudeen" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-          <div class="placeholder" style="display: none;">
-            <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 6px;"></i><br />
-            Add profile.jpg
-          </div>
+          <img src="profile.png" alt="Abdulmalik Tajudeen" onerror="this.src='https://via.placeholder.com/180?text=Profile+Image';" />
         </div>
       </section>
 
+      <!-- STATS HIGHLIGHTS -->
+      <div class="stats-bar animate-in">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="stat-info">
+            <h4>4+</h4>
+            <p>Core Analytics Tools</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-folder-tree"></i></div>
+          <div class="stat-info">
+            <h4>10+</h4>
+            <p>Completed Projects</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="stat-info">
+            <h4>Open</h4>
+            <p>To Consulting & Roles</p>
+          </div>
+        </div>
+      </div>
+
       <!-- PROJECTS SECTION -->
-      <section id="projects">
+      <section id="projects" class="animate-in">
         <div class="section-title">
-          <h2>Selected Work</h2>
-          <p>A portfolio of end-to-end data analysis, business intelligence, and predictive modeling projects.</p>
+          <h2>Selected Projects</h2>
+          <p>A collection of data analytics, business intelligence dashboards, and predictive analysis work.</p>
         </div>
 
         <div class="projects-grid">
@@ -723,9 +783,9 @@
                 <span>Excel</span>
                 <span>Data Analysis</span>
               </div>
-              <h3>FIFA World Cup 2026 Player Performance</h3>
-              <p>An interactive dashboard assessing player metrics and historical datasets to uncover competitive patterns and performance distributions.</p>
-              <a href="#" class="project-link" target="_blank" rel="noopener">Explore Project <i class="fas fa-arrow-right"></i></a>
+              <h3>FIFA World Cup 2026 Performance Analysis</h3>
+              <p>An interactive Power BI dashboard exploring player performance datasets to turn metrics into structured visual insights.</p>
+              <a href="#" class="project-link" target="_blank" rel="noopener">View Project <i class="fas fa-arrow-right"></i></a>
             </div>
           </article>
 
@@ -745,15 +805,14 @@
                 <span>Business Intelligence</span>
               </div>
               <h3>Codecipher Autos — Sales Analysis</h3>
-              <p>Comprehensive market analysis evaluating pricing trends, mileage factors, and revenue drivers for automotive sales optimization.</p>
-              <a href="#" class="project-link" target="_blank" rel="noopener">Explore Project <i class="fas fa-arrow-right"></i></a>
+              <p>Business analytics dashboard evaluating pricing, mileage patterns, and sales performance across automotive brands.</p>
+              <a href="#" class="project-link" target="_blank" rel="noopener">View Project <i class="fas fa-arrow-right"></i></a>
             </div>
           </article>
 
           <!-- Project 3 -->
           <article class="project-card">
             <div class="project-image">
-              <img src="football.jpg" alt="FIFA World Cup 2026 Analysis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="project-placeholder">
                 <i class="fab fa-python"></i>
                 <small>Machine Learning Pipeline</small>
@@ -765,30 +824,29 @@
                 <span>Pandas</span>
                 <span>Machine Learning</span>
               </div>
-              <h3>Predictive Modeling & EDA</h3>
-              <p>Exploratory data analysis and supervised machine learning workflow engineered to deliver actionable prediction insights.</p>
-              <a href="#" class="project-link" target="_blank" rel="noopener">Explore Project <i class="fas fa-arrow-right"></i></a>
+              <h3>Data Science & Predictive Modeling</h3>
+              <p>End-to-end data processing, exploratory data analysis, and predictive model building using Python data tools.</p>
+              <a href="#" class="project-link" target="_blank" rel="noopener">View Project <i class="fas fa-arrow-right"></i></a>
             </div>
           </article>
 
           <!-- Project 4 -->
           <article class="project-card">
             <div class="project-image">
-              <img src="football.jpg" alt="FIFA World Cup 2026 Analysis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="project-placeholder">
                 <i class="fas fa-database"></i>
-                <small>SQL Query Suite</small>
+                <small>SQL Database Queries</small>
               </div>
             </div>
             <div class="project-content">
               <div class="project-tags">
                 <span>SQL</span>
                 <span>Data Cleaning</span>
-                <span>Analytics</span>
+                <span>ETL</span>
               </div>
-              <h3>Relational SQL Data Extraction</h3>
-              <p>Complex SQL scripts designed to clean multi-table schemas, aggregation queries, and segment business operational metrics.</p>
-              <a href="#" class="project-link" target="_blank" rel="noopener">Explore Project <i class="fas fa-arrow-right"></i></a>
+              <h3>SQL Analytical Query Suite</h3>
+              <p>Structured query algorithms designed to clean, transform, and aggregate business datasets to answer strategic questions.</p>
+              <a href="#" class="project-link" target="_blank" rel="noopener">View Project <i class="fas fa-arrow-right"></i></a>
             </div>
           </article>
 
@@ -796,10 +854,10 @@
       </section>
 
       <!-- CONTACT SECTION -->
-      <section id="contact">
+      <section id="contact" class="animate-in">
         <div class="section-title">
           <h2>Get in Touch</h2>
-          <p>Feel free to reach out for consulting opportunities, full-time roles, or collaborative projects.</p>
+          <p>Feel free to reach out for consulting engagements, freelance projects, or job opportunities.</p>
         </div>
 
         <div class="contact-grid">
@@ -837,16 +895,16 @@
 
   </div>
 
-  <!-- INTERACTIVE SCRIPTS -->
+  <!-- JAVASCRIPT ANIMATIONS & INTERACTIONS -->
   <script>
-    // Mobile Drawer Toggle
+    // Mobile Navigation Drawer Toggle
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
 
     menuToggle.addEventListener('click', () => {
       sidebar.classList.toggle('active');
       const icon = menuToggle.querySelector('i');
-      if(sidebar.classList.contains('active')) {
+      if (sidebar.classList.contains('active')) {
         icon.classList.remove('fa-bars');
         icon.classList.add('fa-xmark');
       } else {
@@ -855,7 +913,7 @@
       }
     });
 
-    // Close menu when link clicked on mobile view
+    // Close Mobile Menu on link click
     document.querySelectorAll('.sidebar-nav a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 992) {
@@ -867,7 +925,18 @@
       });
     });
 
-    // Active link highlighting on scrolling
+    // Scroll Observer for Fade-in Animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section, .stats-bar').forEach(el => observer.observe(el));
+
+    // Sidebar Active Link Highlighting
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.sidebar-nav a');
 
