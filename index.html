@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Abdulmalik Tajudeen | Data Scientist & Analyst</title>
 
-  <!-- Google Fonts & Font Awesome -->
+  <!-- Google Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    /* ── GLOBAL STYLES & VARS ── */
+    /* ── GLOBAL STYLES & VARIABLES ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
@@ -50,17 +50,20 @@
       overflow-x: hidden;
     }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* ── SCROLL & INTERACTION ANIMATIONS ── */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      will-change: opacity, transform;
     }
 
-    .animate-in {
-      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    .reveal-section.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
-    /* ── SIDEBAR (DESKTOP) ── */
+    /* ── SIDEBAR (DESKTOP NAVIGATION) ── */
     #sidebar {
       width: var(--sidebar-w);
       min-height: 100vh;
@@ -118,8 +121,9 @@
     .sidebar-nav ul li a:hover,
     .sidebar-nav ul li a.active {
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.08);
       border-left-color: var(--primary-hover);
+      font-weight: 700;
     }
 
     .sidebar-nav ul li a i { font-size: 1rem; width: 20px; text-align: center; }
@@ -160,7 +164,7 @@
       transform: translateY(-2px);
     }
 
-    /* ── MOBILE NAVBAR ── */
+    /* ── MOBILE HEADER & MENU TOGGLE ── */
     .mobile-header {
       display: none;
       position: fixed;
@@ -191,7 +195,7 @@
       padding: 0.5rem;
     }
 
-    /* ── MAIN LAYOUT ── */
+    /* ── MAIN CONTENT AREA ── */
     #main {
       margin-left: var(--sidebar-w);
       flex: 1;
@@ -220,7 +224,7 @@
       width: 100%;
     }
 
-    /* ── HERO BANNER ── */
+    /* ── HERO / ABOUT ME BANNER ── */
     #hero {
       background: linear-gradient(135deg, #ffffff 0%, #f7faf8 100%);
       border: 1px solid var(--border);
@@ -598,7 +602,7 @@
       line-height: 1.5;
     }
 
-    /* ── CERTIFICATIONS SECTION (VIEWABLE / LIGHTBOX) ── */
+    /* ── CERTIFICATIONS SECTION (VIEWABLE LIGHTBOX) ── */
     .certificates-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -695,7 +699,7 @@
       font-weight: 500;
     }
 
-    /* ── LIGHTBOX MODAL FOR CERTIFICATES ── */
+    /* ── LIGHTBOX MODAL ── */
     .lightbox {
       display: none;
       position: fixed;
@@ -933,13 +937,13 @@
     </div>
 
     <nav class="sidebar-nav">
-      <ul>
-        <li><a href="#hero" class="active"><i class="fas fa-user"></i> About Me</a></li>
-        <li><a href="#projects"><i class="fas fa-folder-open"></i> Projects</a></li>
-        <li><a href="#videos"><i class="fas fa-video"></i> Video Demos</a></li>
-        <li><a href="#certificates"><i class="fas fa-certificate"></i> Certifications</a></li>
-        <li><a href="#cv"><i class="fas fa-file-pdf"></i> Curriculum Vitae</a></li>
-        <li><a href="#contact"><i class="fas fa-paper-plane"></i> Get in Touch</a></li>
+      <ul id="navLinks">
+        <li><a href="#hero" class="nav-item active"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="#projects" class="nav-item"><i class="fas fa-folder-open"></i> Projects</a></li>
+        <li><a href="#videos" class="nav-item"><i class="fas fa-video"></i> Video Demos</a></li>
+        <li><a href="#certificates" class="nav-item"><i class="fas fa-certificate"></i> Certifications</a></li>
+        <li><a href="#cv" class="nav-item"><i class="fas fa-file-pdf"></i> Curriculum Vitae</a></li>
+        <li><a href="#contact" class="nav-item"><i class="fas fa-paper-plane"></i> Get in Touch</a></li>
       </ul>
     </nav>
 
@@ -969,7 +973,7 @@
     <main class="inner">
 
       <!-- HERO / ABOUT SECTION -->
-      <section id="hero" class="animate-in">
+      <section id="hero" class="reveal-section">
         <div class="hero-content">
           <h1>Hi, I'm Abdulmalik Tajudeen</h1>
           <p class="hero-subtitle">Data Analyst & Data Scientist</p>
@@ -999,7 +1003,7 @@
       </section>
 
       <!-- STATS HIGHLIGHTS -->
-      <div class="stats-bar animate-in">
+      <div class="stats-bar reveal-section">
         <div class="stat-card">
           <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
           <div class="stat-info">
@@ -1026,7 +1030,7 @@
       </div>
 
       <!-- PROJECTS SECTION -->
-      <section id="projects" class="animate-in">
+      <section id="projects" class="reveal-section">
         <div class="section-title">
           <h2>Selected Projects</h2>
           <p>A collection of data analytics, business intelligence dashboards, and predictive analysis work.</p>
@@ -1034,7 +1038,7 @@
 
         <div class="projects-grid">
 
-          <!-- Project 1 -->
+          <!-- Project Card 1 -->
           <article class="project-card">
             <div class="project-image">
               <img src="football.jpg" alt="FIFA World Cup 2026 Analysis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
@@ -1055,7 +1059,7 @@
             </div>
           </article>
 
-          <!-- Project 2 -->
+          <!-- Project Card 2 -->
           <article class="project-card">
             <div class="project-image">
               <img src="images/codecipher-autos.png" alt="Codecipher Autos Analysis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
@@ -1076,7 +1080,7 @@
             </div>
           </article>
 
-          <!-- Project 3 -->
+          <!-- Project Card 3 -->
           <article class="project-card">
             <div class="project-image">
               <div class="project-placeholder">
@@ -1096,11 +1100,35 @@
             </div>
           </article>
 
+          <!-- ================================================================= -->
+          <!-- 💡 TO ADD A NEW PROJECT: COPY & PASTE THE TEMPLATE BELOW INSIDE THIS GRID -->
+          <!-- ================================================================= -->
+          <!--
+          <article class="project-card">
+            <div class="project-image">
+              <img src="YOUR_PROJECT_IMAGE.jpg" alt="Project Title" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="project-placeholder" style="display: none;">
+                <i class="fas fa-chart-bar"></i>
+                <small>Project Preview</small>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-tags">
+                <span>Tool 1</span>
+                <span>Tool 2</span>
+              </div>
+              <h3>Your New Project Title</h3>
+              <p>Detailed description of the project, techniques used, and outcomes achieved.</p>
+              <a href="YOUR_PROJECT_LINK" class="project-link" target="_blank" rel="noopener">View Project <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+          -->
+
         </div>
       </section>
 
       <!-- VIDEO PROOF & PROJECT DEMOS SECTION -->
-      <section id="videos" class="animate-in">
+      <section id="videos" class="reveal-section">
         <div class="section-title">
           <h2>Video Demos & Proof of Work</h2>
           <p>Video walkthroughs showcasing dashboard functionality, workflows, and analytical project demonstrations.</p>
@@ -1111,7 +1139,7 @@
           <!-- Video 1: YouTube Embed Example -->
           <div class="video-card">
             <div class="video-wrapper">
-              <!-- Replace 'YOUR_YOUTUBE_ID' with your real YouTube video ID (e.g. embed/dQw4w9WgXcQ) -->
+              <!-- Replace 'dQw4w9WgXcQ' with your YouTube video ID -->
               <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Dashboard Walkthrough" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="video-info">
@@ -1120,7 +1148,7 @@
             </div>
           </div>
 
-          <!-- Video 2: Direct MP4 / Local Video Example -->
+          <!-- Video 2: Direct MP4 / Local Video File Example -->
           <div class="video-card">
             <div class="video-wrapper">
               <!-- Replace 'demo-video.mp4' with your actual video file path -->
@@ -1135,12 +1163,40 @@
             </div>
           </div>
 
+          <!-- ================================================================= -->
+          <!-- 💡 TO ADD A NEW VIDEO: COPY & PASTE EITHER TEMPLATE BELOW INSIDE THIS GRID -->
+          <!-- ================================================================= -->
+          <!--
+          YOUTUBE VIDEO TEMPLATE:
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID" title="Video Title" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+              <h3>Video Title</h3>
+              <p>Description of the video content.</p>
+            </div>
+          </div>
+
+          LOCAL MP4 FILE TEMPLATE:
+          <div class="video-card">
+            <div class="video-wrapper">
+              <video controls poster="THUMBNAIL_IMAGE.jpg">
+                <source src="YOUR_VIDEO.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-info">
+              <h3>Video Title</h3>
+              <p>Description of the video content.</p>
+            </div>
+          </div>
+          -->
+
         </div>
       </section>
 
-
       <!-- CERTIFICATIONS SECTION -->
-      <section id="certificates" class="animate-in">
+      <section id="certificates" class="reveal-section">
         <div class="section-title">
           <h2>Certifications</h2>
           <p>Click on any certificate to view it in full resolution.</p>
@@ -1292,17 +1348,47 @@
             </div>
           </div>
 
-        </div> <!-- Closes .certificates-grid ONLY ONCE HERE -->
-      </section> <!-- Closes #certificates ONLY ONCE HERE -->
+          <!-- ================================================================= -->
+          <!-- 💡 TO ADD A NEW CERTIFICATE: COPY & PASTE THIS TEMPLATE INSIDE THIS GRID -->
+          <!-- ================================================================= -->
+          <!--
+          <div class="cert-card" onclick="openLightbox('YOUR_CERTIFICATE_IMAGE.jpg', 'Your Certificate Title')">
+            <div class="cert-image">
+              <img src="YOUR_CERTIFICATE_IMAGE.jpg" alt="Your Certificate Title" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="cert-placeholder" style="display: none;">
+                <i class="fas fa-certificate"></i>
+                <small>Certificate Image</small>
+              </div>
+              <div class="cert-overlay">
+                <i class="fas fa-search-plus"></i> Click to View
+              </div>
+            </div>
+            <div class="cert-details">
+              <h3>Your Certificate Title</h3>
+              <p class="cert-issuer">Issuing Organization / Platform</p>
+            </div>
+          </div>
+          -->
+
+        </div>
+      </section>
+
+      <!-- LIGHTBOX POPUP CONTAINER FOR CERTIFICATES -->
+      <div id="lightboxModal" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+          <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+          <img id="lightboxImg" src="" alt="Certificate View" />
+          <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+      </div>
 
       <!-- DOWNLOADABLE CV SECTION -->
-      <section id="cv" class="animate-in">
+      <section id="cv" class="reveal-section">
         <div class="cv-info">
           <h2>Curriculum Vitae</h2>
           <p>Looking for a complete overview of my experience, technical skill set, and education? Access my resume below.</p>
         </div>
         <div class="cv-actions">
-          <!-- Update the href to point to your PDF file -->
           <a href="CV_Abdulmalik_Tajudeen.pdf" class="btn btn-light" download="Abdulmalik_Tajudeen_CV.pdf">
             <i class="fas fa-download"></i> Download CV (PDF)
           </a>
@@ -1313,7 +1399,7 @@
       </section>
 
       <!-- CONTACT SECTION -->
-      <section id="contact" class="animate-in">
+      <section id="contact" class="reveal-section">
         <div class="section-title">
           <h2>Get in Touch</h2>
           <p>Feel free to reach out for consulting engagements, freelance projects, or job opportunities.</p>
@@ -1355,9 +1441,9 @@
 
   </div>
 
-  <!-- JAVASCRIPT FOR INTERACTION -->
+  <!-- JAVASCRIPT CONTROLLERS -->
   <script>
-    // Mobile Navigation Menu Toggle
+    // 1. MOBILE MENU TOGGLE
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
 
@@ -1373,7 +1459,7 @@
       });
     }
 
-    // Lightbox modal for viewing certificate images
+    // 2. CERTIFICATE LIGHTBOX CONTROLLER
     function openLightbox(imageSrc, captionText) {
       const modal = document.getElementById('lightboxModal');
       const modalImg = document.getElementById('lightboxImg');
@@ -1389,12 +1475,45 @@
       modal.classList.remove('active');
     }
 
-    // Close lightbox on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeLightbox();
       }
     });
+
+    // 3. INTERSECTION OBSERVER FOR ANIMATION & SIDEBAR ACTIVE SELECTION
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -20% 0px',
+      threshold: 0.15
+    };
+
+    const sections = document.querySelectorAll('.reveal-section');
+    const navLinks = document.querySelectorAll('.nav-item');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // ANIMATION: Fade/slide in when entering viewport, fade/slide out when leaving
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+
+        // SIDEBAR ACTIVE HIGHLIGHT: Highlight ONLY the currently visible section
+        if (entry.isIntersecting && entry.target.id) {
+          const currentId = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentId}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => revealObserver.observe(section));
   </script>
 
 </body>
