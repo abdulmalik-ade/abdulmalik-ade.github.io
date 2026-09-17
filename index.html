@@ -35,7 +35,7 @@
       --font-serif: 'Source Serif 4', Georgia, serif;
       --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
       --shadow-md: 0 12px 30px rgba(11, 41, 32, 0.08);
-      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -306,6 +306,7 @@
       font-weight: 600;
       text-decoration: none;
       transition: var(--transition);
+      cursor: pointer;
     }
 
     .btn-primary {
@@ -352,7 +353,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.25rem;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
     }
 
     .stat-card {
@@ -539,7 +540,65 @@
       gap: 12px;
     }
 
-    /* ── CERTIFICATIONS SECTION (IMAGE CARDS) ── */
+    /* ── VIDEO PROOF & DEMOS SECTION ── */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(18, 78, 63, 0.2);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background: #000;
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+      object-fit: cover;
+    }
+
+    .video-info {
+      padding: 1.25rem;
+    }
+
+    .video-info h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .video-info p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── CERTIFICATIONS SECTION (VIEWABLE / LIGHTBOX) ── */
     .certificates-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -555,6 +614,7 @@
       display: flex;
       flex-direction: column;
       transition: var(--transition);
+      cursor: pointer;
     }
 
     .cert-card:hover {
@@ -578,8 +638,27 @@
       transition: transform 0.4s ease;
     }
 
+    .cert-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(11, 41, 32, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      gap: 8px;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .cert-card:hover .cert-overlay {
+      opacity: 1;
+    }
+
     .cert-card:hover .cert-image img {
-      transform: scale(1.04);
+      transform: scale(1.05);
     }
 
     .cert-placeholder {
@@ -614,6 +693,104 @@
       font-size: 0.85rem;
       color: var(--text-muted);
       font-weight: 500;
+    }
+
+    /* ── LIGHTBOX MODAL FOR CERTIFICATES ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #ffffff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .lightbox-caption {
+      color: #ffffff;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* ── DOWNLOAD CV SECTION ── */
+    #cv {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 3rem;
+      margin-bottom: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .cv-info h2 {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .cv-info p {
+      font-size: 0.98rem;
+      color: #cbd5e1;
+      max-width: 550px;
+    }
+
+    .cv-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-light {
+      background: #ffffff;
+      color: var(--primary-dark);
+      font-weight: 700;
+      border: 1px solid #ffffff;
+    }
+
+    .btn-light:hover {
+      background: #f1f5f9;
+      transform: translateY(-2px);
     }
 
     /* ── CONTACT ── */
@@ -724,9 +901,17 @@
 
       .hero-skills, .hero-actions { justify-content: center; }
 
+      #cv {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+
+      .cv-actions { justify-content: center; }
+
       .section-title p { margin-left: 0; }
 
-      .projects-grid { grid-template-columns: 1fr; }
+      .projects-grid, .video-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -750,8 +935,10 @@
     <nav class="sidebar-nav">
       <ul>
         <li><a href="#hero" class="active"><i class="fas fa-user"></i> About Me</a></li>
-        <li><a href="#projects"><i class="fas fa-folder-open"></i> Selected Projects</a></li>
+        <li><a href="#projects"><i class="fas fa-folder-open"></i> Projects</a></li>
+        <li><a href="#videos"><i class="fas fa-video"></i> Video Demos</a></li>
         <li><a href="#certificates"><i class="fas fa-certificate"></i> Certifications</a></li>
+        <li><a href="#cv"><i class="fas fa-file-pdf"></i> Curriculum Vitae</a></li>
         <li><a href="#contact"><i class="fas fa-paper-plane"></i> Get in Touch</a></li>
       </ul>
     </nav>
@@ -802,7 +989,7 @@
 
           <div class="hero-actions">
             <a href="#projects" class="btn btn-primary"><i class="fas fa-eye"></i> View My Work</a>
-            <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Get In Touch</a>
+            <a href="#cv" class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
           </div>
         </div>
 
@@ -909,45 +1096,67 @@
             </div>
           </article>
 
-          <!-- Project 4 -->
-          <article class="project-card">
-            <div class="project-image">
-              <div class="project-placeholder">
-                <i class="fas fa-database"></i>
-                <small>SQL Database Queries</small>
-              </div>
+        </div>
+      </section>
+
+      <!-- VIDEO PROOF & PROJECT DEMOS SECTION -->
+      <section id="videos" class="animate-in">
+        <div class="section-title">
+          <h2>Video Demos & Proof of Work</h2>
+          <p>Video walkthroughs showcasing dashboard functionality, workflows, and analytical project demonstrations.</p>
+        </div>
+
+        <div class="video-grid">
+          
+          <!-- Video 1: YouTube Embed Example -->
+          <div class="video-card">
+            <div class="video-wrapper">
+              <!-- Replace 'YOUR_YOUTUBE_ID' with your real YouTube video ID (e.g. embed/dQw4w9WgXcQ) -->
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Dashboard Walkthrough" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div class="project-content">
-              <div class="project-tags">
-                <span>SQL</span>
-                <span>Data Cleaning</span>
-                <span>ETL</span>
-              </div>
-              <h3>SQL Analytical Query Suite</h3>
-              <p>Structured query algorithms designed to clean, transform, and aggregate business datasets to answer strategic questions.</p>
-              <a href="#" class="project-link" target="_blank" rel="noopener">View Project <i class="fas fa-arrow-right"></i></a>
+            <div class="video-info">
+              <h3>Interactive Power BI Walkthrough</h3>
+              <p>A video explanation of dynamic slicers, key performance indicators, and data modeling techniques applied in Power BI.</p>
             </div>
-          </article>
+          </div>
+
+          <!-- Video 2: Direct MP4 / Local Video Example -->
+          <div class="video-card">
+            <div class="video-wrapper">
+              <!-- Replace 'demo-video.mp4' with your actual video file path -->
+              <video controls poster="football.jpg">
+                <source src="demo-video.mp4" type="video/mp4">
+                Your browser does not support playing HTML5 video.
+              </video>
+            </div>
+            <div class="video-info">
+              <h3>Python & SQL Workflow Demonstration</h3>
+              <p>A screen recording detailing custom automated data cleaning scripts and exploratory query execution.</p>
+            </div>
+          </div>
 
         </div>
       </section>
 
-      <!-- CERTIFICATIONS SECTION -->
+      <!-- CERTIFICATIONS SECTION (INTERACTIVE LIGHTBOX) -->
       <section id="certificates" class="animate-in">
         <div class="section-title">
           <h2>Certifications</h2>
-          <p>Professional credentials and verified achievements in data science and analytics.</p>
+          <p>Click on any certificate to view it in full resolution.</p>
         </div>
 
         <div class="certificates-grid">
 
           <!-- Certificate 1 -->
-          <div class="cert-card">
+          <div class="cert-card" onclick="openLightbox('Certificate_AI basics.jpg', 'AI Basics Certification')">
             <div class="cert-image">
               <img src="Certificate_AI basics.jpg" alt="AI Basics Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="cert-placeholder" style="display: none;">
                 <i class="fas fa-certificate"></i>
                 <small>Certificate Image</small>
+              </div>
+              <div class="cert-overlay">
+                <i class="fas fa-search-plus"></i> Click to View
               </div>
             </div>
             <div class="cert-details">
@@ -957,12 +1166,15 @@
           </div>
 
           <!-- Certificate 2 -->
-          <div class="cert-card">
+          <div class="cert-card" onclick="openLightbox('Certificate_Generative AI.jpg', 'Generative AI Certification')">
             <div class="cert-image">
               <img src="Certificate_Generative AI.jpg" alt="Generative AI Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="cert-placeholder" style="display: none;">
                 <i class="fas fa-certificate"></i>
                 <small>Certificate Image</small>
+              </div>
+              <div class="cert-overlay">
+                <i class="fas fa-search-plus"></i> Click to View
               </div>
             </div>
             <div class="cert-details">
@@ -972,12 +1184,15 @@
           </div>
 
           <!-- Certificate 3 -->
-          <div class="cert-card">
+          <div class="cert-card" onclick="openLightbox('Certificate_Internet Search.jpg', 'Internet Search & Research Certification')">
             <div class="cert-image">
               <img src="Certificate_Internet Search.jpg" alt="Internet Search Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="cert-placeholder" style="display: none;">
                 <i class="fas fa-certificate"></i>
                 <small>Certificate Image</small>
+              </div>
+              <div class="cert-overlay">
+                <i class="fas fa-search-plus"></i> Click to View
               </div>
             </div>
             <div class="cert-details">
@@ -987,12 +1202,15 @@
           </div>
 
           <!-- Certificate 4 -->
-          <div class="cert-card">
+          <div class="cert-card" onclick="openLightbox('Certificate_Responsible AI.jpg', 'Responsible AI Certification')">
             <div class="cert-image">
               <img src="Certificate_Responsible AI.jpg" alt="Responsible AI Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="cert-placeholder" style="display: none;">
                 <i class="fas fa-certificate"></i>
                 <small>Certificate Image</small>
+              </div>
+              <div class="cert-overlay">
+                <i class="fas fa-search-plus"></i> Click to View
               </div>
             </div>
             <div class="cert-details">
@@ -1002,12 +1220,15 @@
           </div>
 
           <!-- Certificate 5 -->
-          <div class="cert-card">
+          <div class="cert-card" onclick="openLightbox('Certificate_Boost Your Productivity.jpg', 'Boost Your Productivity Certification')">
             <div class="cert-image">
               <img src="Certificate_Boost Your Productivity.jpg" alt="Productivity Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="cert-placeholder" style="display: none;">
                 <i class="fas fa-certificate"></i>
                 <small>Certificate Image</small>
+              </div>
+              <div class="cert-overlay">
+                <i class="fas fa-search-plus"></i> Click to View
               </div>
             </div>
             <div class="cert-details">
@@ -1017,12 +1238,15 @@
           </div>
 
           <!-- Certificate 6 -->
-          <div class="cert-card">
+          <div class="cert-card" onclick="openLightbox('Certificate_AI for all.jpg', 'AI For All Certification')">
             <div class="cert-image">
               <img src="Certificate_AI for all.jpg" alt="AI For All Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="cert-placeholder" style="display: none;">
                 <i class="fas fa-certificate"></i>
                 <small>Certificate Image</small>
+              </div>
+              <div class="cert-overlay">
+                <i class="fas fa-search-plus"></i> Click to View
               </div>
             </div>
             <div class="cert-details">
@@ -1031,6 +1255,32 @@
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <!-- LIGHTBOX POPUP CONTAINER FOR CERTIFICATES -->
+      <div id="lightboxModal" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+          <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+          <img id="lightboxImg" src="" alt="Certificate View" />
+          <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+      </div>
+
+      <!-- DOWNLOADABLE CV SECTION -->
+      <section id="cv" class="animate-in">
+        <div class="cv-info">
+          <h2>Curriculum Vitae</h2>
+          <p>Looking for a complete overview of my experience, technical skill set, and education? Access my resume below.</p>
+        </div>
+        <div class="cv-actions">
+          <!-- Update the href to point to your PDF file -->
+          <a href="CV_Abdulmalik_Tajudeen.pdf" class="btn btn-light" download="Abdulmalik_Tajudeen_CV.pdf">
+            <i class="fas fa-download"></i> Download CV (PDF)
+          </a>
+          <a href="CV_Abdulmalik_Tajudeen.pdf" class="btn btn-outline" style="color: #ffffff; border-color: #ffffff;" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Preview CV
+          </a>
         </div>
       </section>
 
@@ -1077,8 +1327,9 @@
 
   </div>
 
-  <!-- JAVASCRIPT FOR MOBILE NAVIGATION -->
+  <!-- JAVASCRIPT FOR INTERACTION -->
   <script>
+    // Mobile Navigation Menu Toggle
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
 
@@ -1087,13 +1338,35 @@
         sidebar.classList.toggle('active');
       });
 
-      // Close sidebar when clicking outside on mobile
       document.addEventListener('click', (e) => {
         if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
           sidebar.classList.remove('active');
         }
       });
     }
+
+    // Lightbox modal for viewing certificate images
+    function openLightbox(imageSrc, captionText) {
+      const modal = document.getElementById('lightboxModal');
+      const modalImg = document.getElementById('lightboxImg');
+      const caption = document.getElementById('lightboxCaption');
+      
+      modal.classList.add('active');
+      modalImg.src = imageSrc;
+      caption.textContent = captionText;
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.remove('active');
+    }
+
+    // Close lightbox on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
   </script>
 
 </body>
