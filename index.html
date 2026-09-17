@@ -1138,7 +1138,8 @@
         </div>
       </section>
 
-      <!-- CERTIFICATIONS SECTION (INTERACTIVE LIGHTBOX) -->
+
+      <!-- CERTIFICATIONS SECTION -->
       <section id="certificates" class="animate-in">
         <div class="section-title">
           <h2>Certifications</h2>
@@ -1255,14 +1256,10 @@
             </div>
           </div>
 
-        </div>
-      </section>
-
-
-      <!-- Certificate 7 -->
-          <div class="cert-card" onclick="openLightbox('Certificate_AI for all.jpg', 'AI For All Certification')">
+          <!-- Certificate 7 -->
+          <div class="cert-card" onclick="openLightbox('Microso Power BI Data Analyst.jpg', 'Microsoft Power BI Data Analyst')">
             <div class="cert-image">
-              <img src="Microso Power BI Data Analyst.jpg" alt="AI For All Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <img src="Microso Power BI Data Analyst.jpg" alt="Microsoft Power BI Data Analyst" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="cert-placeholder" style="display: none;">
                 <i class="fas fa-certificate"></i>
                 <small>Certificate Image</small>
@@ -1272,19 +1269,15 @@
               </div>
             </div>
             <div class="cert-details">
-              <h3>AI For All</h3>
+              <h3>Microsoft Power BI Data Analyst</h3>
               <p class="cert-issuer">Professional Certification</p>
             </div>
           </div>
 
-        </div>
-      </section>
-
-  
-      <!-- Certificate 8 -->
-          <div class="cert-card" onclick="openLightbox('Certificate_AI for all.jpg', 'AI For All Certification')">
+          <!-- Certificate 8 -->
+          <div class="cert-card" onclick="openLightbox('certificate_Azure Data Scienst Associate (DP-100).jpg', 'Azure Data Scientist Associate (DP-100)')">
             <div class="cert-image">
-              <img src="certificate_Azure Data Scienst Associate (DP-100).jpg" alt="AI For All Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <img src="certificate_Azure Data Scienst Associate (DP-100).jpg" alt="Azure Data Scientist Associate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="cert-placeholder" style="display: none;">
                 <i class="fas fa-certificate"></i>
                 <small>Certificate Image</small>
@@ -1294,25 +1287,13 @@
               </div>
             </div>
             <div class="cert-details">
-              <h3>AI For All</h3>
+              <h3>Azure Data Scientist Associate (DP-100)</h3>
               <p class="cert-issuer">Professional Certification</p>
             </div>
           </div>
 
-        </div>
-      </section>  
-
-
-      
-
-      <!-- LIGHTBOX POPUP CONTAINER FOR CERTIFICATES -->
-      <div id="lightboxModal" class="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-          <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-          <img id="lightboxImg" src="" alt="Certificate View" />
-          <div id="lightboxCaption" class="lightbox-caption"></div>
-        </div>
-      </div>
+        </div> <!-- Closes .certificates-grid ONLY ONCE HERE -->
+      </section> <!-- Closes #certificates ONLY ONCE HERE -->
 
       <!-- DOWNLOADABLE CV SECTION -->
       <section id="cv" class="animate-in">
