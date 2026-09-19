@@ -429,6 +429,93 @@
       margin-left: 14px;
     }
 
+    /* ── WORK EXPERIENCE TIMELINE STYLES ── */
+    .experience-timeline {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 3.5rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 20px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -27px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--bg-body);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .timeline-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .timeline-content:hover {
+      border-color: rgba(18, 78, 63, 0.3);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-header h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .timeline-date {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-duties {
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-duties li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
     /* ── PROJECTS GRID ── */
     .projects-grid {
       display: grid;
@@ -939,6 +1026,7 @@
     <nav class="sidebar-nav">
       <ul id="navLinks">
         <li><a href="#hero" class="nav-item active"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="#experience" class="nav-item"><i class="fas fa-briefcase"></i> Experience</a></li>
         <li><a href="#projects" class="nav-item"><i class="fas fa-folder-open"></i> Projects</a></li>
         <li><a href="#videos" class="nav-item"><i class="fas fa-video"></i> Video Demos</a></li>
         <li><a href="#certificates" class="nav-item"><i class="fas fa-certificate"></i> Certifications</a></li>
@@ -1029,6 +1117,72 @@
         </div>
       </div>
 
+      <!-- WORK EXPERIENCE SECTION -->
+      <section id="experience" class="reveal-section">
+        <div class="section-title">
+          <h2>Work & Teaching Experience</h2>
+          <p>A summary of my roles in data science instruction, analytics, and freelance projects.</p>
+        </div>
+
+        <div class="experience-timeline">
+
+          <!-- Experience Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3>Data Science & Analytics Instructor</h3>
+                <span class="timeline-date">2026 – Present</span>
+              </div>
+              <h4 class="timeline-company">Craft Innovation Hub</h4>
+              <ul class="timeline-duties">
+                <li>Designed and facilitated practical workshop curricula covering Python, SQL databases, and Exploratory Data Analysis (EDA) for university students.</li>
+                <li>Guided students through hands-on data cleaning tasks and building interactive analytical dashboards.</li>
+                <li>Created custom Jupyter Notebook lessons and runnable code exercises to simplify complex data concepts.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Experience Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3>Freelance Data Analyst & Digital Strategist</h3>
+                <span class="timeline-date">2025 – Present</span>
+              </div>
+              <h4 class="timeline-company">Self-Employed / Remote</h4>
+              <ul class="timeline-duties">
+                <li>Cleaned, transformed, and modeled raw business data into interactive visual dashboards using Power BI and Excel.</li>
+                <li>Managed end-to-end media automation pipelines and digital marketing campaigns, utilizing data-driven insights to optimize performance metrics.</li>
+                <li>Assisted clients with data visualization, custom reporting, and workflow automation.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ================================================================= -->
+          <!-- 💡 TO ADD A NEW ROLE: COPY & PASTE THIS TEMPLATE INSIDE THE TIMELINE -->
+          <!-- ================================================================= -->
+          <!--
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3>Job Title Here</h3>
+                <span class="timeline-date">Month Year – Present</span>
+              </div>
+              <h4 class="timeline-company">Company / Organization Name</h4>
+              <ul class="timeline-duties">
+                <li>Key responsibility or achievement statement.</li>
+                <li>Another key responsibility or quantifiable result.</li>
+              </ul>
+            </div>
+          </div>
+          -->
+
+        </div>
+      </section>
+
       <!-- PROJECTS SECTION -->
       <section id="projects" class="reveal-section">
         <div class="section-title">
@@ -1041,21 +1195,21 @@
           <!-- Project Card 1 -->
           <article class="project-card">
             <div class="project-image">
-              <img src="project.jpg" alt="Sales Performance Dashboard" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <img src="football.jpg" alt="FIFA World Cup 2026 Analysis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="project-placeholder" style="display: none;">
                 <i class="fas fa-trophy"></i>
-                <small>Sales Performance Dashboard</small>
+                <small>FIFA Analysis Dashboard</small>
               </div>
             </div>
             <div class="project-content">
               <div class="project-tags">
-         <!--       <span>Power BI</span> -->
+                <span>Power BI</span>
                 <span>Excel</span>
                 <span>Data Analysis</span>
               </div>
-              <h3>Sales Performance Analysis</h3>
+              <h3>FIFA World Cup 2026 Performance Analysis</h3>
               <p>An interactive Power BI dashboard exploring player performance datasets to turn metrics into structured visual insights.</p>
-              <a href="https://1drv.ms/x/c/f96f8be75dae2495/IQALuQ1MhQlhQbXib4Yknx9NAeMMalqBFTmM_smH0uDFGIU" class="project-link" target="_blank" rel="noopener">View Project <i class="fas fa-arrow-right"></i></a>
+              <a href="https://1drv.ms/x/c/f96f8be75dae2495/IQBPHRkDCKBgSrSGYkXamt4qAb9zMeyskgWp_pn__pMLuz8?e=GZ0Fod" class="project-link" target="_blank" rel="noopener">View Project <i class="fas fa-arrow-right"></i></a>
             </div>
           </article>
 
@@ -1140,13 +1294,7 @@
           <div class="video-card">
             <div class="video-wrapper">
               <!-- Replace 'dQw4w9WgXcQ' with your YouTube video ID -->
-              <iframe 
-                src="https://drive.google.com/file/d/1WisRu5v4An5Z_fsAei9OvzLAGib412ir/preview" 
-                width="640" 
-                height="360" 
-                allow="autoplay" 
-                allowfullscreen>
-              </iframe>
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Dashboard Walkthrough" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="video-info">
               <h3>Interactive Power BI Walkthrough</h3>
@@ -1154,18 +1302,15 @@
             </div>
           </div>
 
-          <!-- Video 2: Direct MP4 / Local Video File Example -->
+          <!-- Video 2: Google Drive Video Embed Example -->
           <div class="video-card">
             <div class="video-wrapper">
-              <!-- Replace 'demo-video.mp4' with your actual video file path -->
-              <video controls poster="football.jpg">
-                <source src="portfolio.mp4" type="video/mp4">
-                Your browser does not support playing HTML5 video.
-              </video>
+              <!-- Google Drive video link ending in /preview -->
+              <iframe src="https://drive.google.com/file/d/1WisRu5v4An5Z_fsAei9OvzLAGib412ir/preview" title="Google Drive Video Demo" allow="autoplay" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-              <h3>Python & SQL Workflow Demonstration</h3>
-              <p>A screen recording detailing custom automated data cleaning scripts and exploratory query execution.</p>
+              <h3>Google Drive Video Walkthrough</h3>
+              <p>A video recording streamed directly from Google Drive showcasing technical workflows and project demos.</p>
             </div>
           </div>
 
@@ -1184,12 +1329,10 @@
             </div>
           </div>
 
-          LOCAL MP4 FILE TEMPLATE:
+          GOOGLE DRIVE VIDEO TEMPLATE:
           <div class="video-card">
             <div class="video-wrapper">
-              <video controls poster="THUMBNAIL_IMAGE.jpg">
-                <source src="YOUR_VIDEO.mp4" type="video/mp4">
-              </video>
+              <iframe src="https://drive.google.com/file/d/YOUR_DRIVE_FILE_ID/preview" title="Video Title" allow="autoplay" allowfullscreen></iframe>
             </div>
             <div class="video-info">
               <h3>Video Title</h3>
