@@ -656,20 +656,67 @@
       border-color: rgba(18, 78, 63, 0.2);
     }
 
-    .video-wrapper {
+    .video-wrapper,
+    .video-container {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      aspect-ratio: 16 / 9;
       background: #000;
+      overflow: hidden;
     }
 
     .video-wrapper iframe,
-    .video-wrapper video {
+    .video-wrapper video,
+    .video-container iframe,
+    .video-container video {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       border: none;
-      object-fit: cover;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* Keeps portrait and landscape videos inside the same responsive frame */
+    .video-play-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.18);
+      cursor: pointer;
+      transition: background 0.25s ease;
+    }
+
+    .video-play-overlay:hover {
+      background: rgba(0, 0, 0, 0.32);
+    }
+
+    .video-play-button {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(18, 78, 63, 0.95);
+      color: #ffffff;
+      font-size: 1.35rem;
+      padding-left: 4px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .video-play-overlay:hover .video-play-button {
+      transform: scale(1.08);
+      background: var(--primary-hover);
+    }
+
+    .video-play-overlay.hidden {
+      display: none;
     }
 
     .video-info {
@@ -1339,21 +1386,37 @@
           
           <!-- Video 1: Craft Innovation Hub -->
           <div class="video-card">
-            <div class="video-container">
-              <!-- Embed or video player link -->
-              <iframe src="https://drive.google.com/file/d/1cieMLrxNxN-eAp-lfCb7qrZNXXYzaK3H/preview" title="My Data Science Journey at Craft Innovation Hub" allowfullscreen></iframe>
+            <div class="video-wrapper">
+              <iframe
+                data-video-src="https://drive.google.com/file/d/1cieMLrxNxN-eAp-lfCb7qrZNXXYzaK3H/preview"
+                src="https://drive.google.com/file/d/1cieMLrxNxN-eAp-lfCb7qrZNXXYzaK3H/preview"
+                title="My Data Science Journey at Craft Innovation Hub"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+              </iframe>
+              <div class="video-play-overlay" role="button" tabindex="0" aria-label="Play video">
+                <span class="video-play-button"><i class="fas fa-play"></i></span>
+              </div>
             </div>
             <div class="video-info">
               <h3>My Data Science Journey: Learning & Growth at Craft Innovation Hub</h3>
               <p>A personal walkthrough detailing my hands-on experience and skill development at Craft Innovation Hub—from foundational data analysis to building advanced predictive workflows.</p>
             </div>
           </div>
-      
+
           <!-- Video 2: FIFA World Cup Analysis -->
           <div class="video-card">
-            <div class="video-container">
-              <!-- Embed or video player link -->
-              <iframe src="https://drive.google.com/file/d/1AIYoufOYOL2QrJh9dCPfY0bsowFH3jzY/preview" title="FIFA World Cup 2026 Analytics Walkthrough" allowfullscreen></iframe>
+            <div class="video-wrapper">
+              <iframe
+                data-video-src="https://drive.google.com/file/d/1AIYoufOYOL2QrJh9dCPfY0bsowFH3jzY/preview"
+                src="https://drive.google.com/file/d/1AIYoufOYOL2QrJh9dCPfY0bsowFH3jzY/preview"
+                title="FIFA World Cup 2026 Analytics Walkthrough"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+              </iframe>
+              <div class="video-play-overlay" role="button" tabindex="0" aria-label="Play video">
+                <span class="video-play-button"><i class="fas fa-play"></i></span>
+              </div>
             </div>
             <div class="video-info">
               <h3>FIFA World Cup 2026 Analytics: Dashboard & Insights Walkthrough</h3>
@@ -1694,7 +1757,32 @@
       }
     });
 
-    // 3. INTERSECTION OBSERVER FOR ANIMATION & SIDEBAR ACTIVE SELECTION
+    // 3. CLICK-TO-PLAY VIDEO CONTROLLER
+    document.querySelectorAll('.video-play-overlay').forEach((overlay) => {
+      const wrapper = overlay.closest('.video-wrapper');
+      const iframe = wrapper ? wrapper.querySelector('iframe') : null;
+
+      const playVideo = () => {
+        if (!iframe) return;
+
+        const videoSrc = iframe.getAttribute('data-video-src');
+        if (videoSrc) {
+          iframe.src = videoSrc + (videoSrc.includes('?') ? '&' : '?') + 'autoplay=1';
+        }
+
+        overlay.classList.add('hidden');
+      };
+
+      overlay.addEventListener('click', playVideo);
+      overlay.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          playVideo();
+        }
+      });
+    });
+
+    // 4. INTERSECTION OBSERVER FOR ANIMATION & SIDEBAR ACTIVE SELECTION
     const observerOptions = {
       root: null,
       rootMargin: '0px 0px -20% 0px',
