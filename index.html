@@ -54,7 +54,8 @@
       --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
       --shadow-md: 0 12px 30px rgba(11, 41, 32, 0.08);
       --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      /* Snappy transition speed for mobile tap and desktop mouse hover response */
+      --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     body {
@@ -66,19 +67,15 @@
       display: flex;
       min-height: 100vh;
       overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* ── SCROLL & INTERACTION ANIMATIONS ── */
+    /* ── REFINED ENTRY ANIMATION (PREVENTS ACCIDENTAL MOBIL DISAPPEARANCE) ── */
+    /* Elements start completely visible on default to support low-power mobile devices.
+       Simple optional CSS keyframe runs ONCE on load rather than hiding content during scrolling. */
     .reveal-section {
-      opacity: 0;
-      transform: translateY(40px) scale(0.98);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-      will-change: opacity, transform;
-    }
-
-    .reveal-section.visible {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: none;
     }
 
     /* ── SIDEBAR (DESKTOP NAVIGATION) ── */
@@ -136,12 +133,15 @@
       transition: var(--transition);
     }
 
+    /* Interactive click and hover feedback on sidebar navigation */
     .sidebar-nav ul li a:hover,
+    .sidebar-nav ul li a:active,
     .sidebar-nav ul li a.active {
       color: #ffffff;
       background: rgba(255, 255, 255, 0.08);
       border-left-color: var(--primary-hover);
       font-weight: 700;
+      padding-left: 1.9rem; /* Gentle push effect on click/hover */
     }
 
     .sidebar-nav ul li a i { font-size: 1rem; width: 20px; text-align: center; }
@@ -175,11 +175,13 @@
       transition: var(--transition);
     }
 
-    .social-icons a:hover {
+    /* Social Icon hover & touch feedback */
+    .social-icons a:hover,
+    .social-icons a:active {
       color: #ffffff;
       background: var(--primary-hover);
       border-color: var(--primary-hover);
-      transform: translateY(-2px);
+      transform: translateY(-3px) scale(1.05);
     }
 
     /* ── MOBILE HEADER & MENU TOGGLE ── */
@@ -211,6 +213,11 @@
       font-size: 1.3rem;
       cursor: pointer;
       padding: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .mobile-toggle:active {
+      transform: scale(0.9);
     }
 
     /* ── MAIN CONTENT AREA ── */
@@ -233,7 +240,8 @@
 
     .top-bar-icons { display: flex; gap: 1rem; }
     .top-bar-icons a { color: var(--text-muted); font-size: 1rem; text-decoration: none; transition: var(--transition); }
-    .top-bar-icons a:hover { color: var(--primary); }
+    .top-bar-icons a:hover,
+    .top-bar-icons a:active { color: var(--primary); transform: translateY(-2px); }
 
     .inner {
       padding: 2.5rem 3rem;
@@ -256,6 +264,7 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+      transition: var(--transition);
     }
 
     #hero::before {
@@ -300,12 +309,16 @@
       border-radius: 20px;
       border: 1px solid rgba(18, 78, 63, 0.1);
       transition: var(--transition);
+      cursor: pointer;
     }
 
-    .skill-badge:hover {
+    /* Interactive hover & click behavior for skill badges */
+    .skill-badge:hover,
+    .skill-badge:active {
       background: var(--primary);
       color: #ffffff;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(18, 78, 63, 0.2);
     }
 
     .hero-bio {
@@ -331,6 +344,7 @@
       cursor: pointer;
     }
 
+    /* Primary action button click & hover animations */
     .btn-primary {
       background: var(--primary);
       color: #ffffff;
@@ -338,10 +352,12 @@
       box-shadow: 0 4px 12px var(--accent-glow);
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover,
+    .btn-primary:active {
       background: var(--primary-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px var(--accent-glow);
+      border-color: var(--primary-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px var(--accent-glow);
     }
 
     .btn-outline {
@@ -350,9 +366,10 @@
       border: 1px solid var(--primary);
     }
 
-    .btn-outline:hover {
+    .btn-outline:hover,
+    .btn-outline:active {
       background: var(--primary-light);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
     .hero-image {
@@ -363,6 +380,12 @@
       box-shadow: var(--shadow-md);
       background: var(--bg-body);
       flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .hero-image:hover,
+    .hero-image:active {
+      transform: scale(1.04);
     }
 
     .hero-image img {
@@ -387,12 +410,16 @@
       align-items: center;
       gap: 1.25rem;
       transition: var(--transition);
+      cursor: pointer;
     }
 
-    .stat-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-sm);
-      border-color: rgba(18, 78, 63, 0.2);
+    /* Interactive elevation and color shift on click or hover */
+    .stat-card:hover,
+    .stat-card:active {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+      background: #fafdfc;
     }
 
     .stat-icon {
@@ -404,6 +431,13 @@
       align-items: center;
       justify-content: center;
       font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover .stat-icon,
+    .stat-card:active .stat-icon {
+      background: var(--primary);
+      color: #ffffff;
     }
 
     .stat-info h4 {
@@ -475,6 +509,13 @@
       background: var(--primary);
       border: 3px solid var(--bg-body);
       box-shadow: 0 0 0 2px var(--primary);
+      transition: var(--transition);
+    }
+
+    .timeline-item:hover .timeline-dot,
+    .timeline-item:active .timeline-dot {
+      background: var(--primary-hover);
+      transform: scale(1.3);
     }
 
     .timeline-content {
@@ -486,9 +527,11 @@
       transition: var(--transition);
     }
 
-    .timeline-content:hover {
-      border-color: rgba(18, 78, 63, 0.3);
-      transform: translateY(-2px);
+    /* Hover & touch interaction for experience timeline cards */
+    .timeline-content:hover,
+    .timeline-content:active {
+      border-color: var(--primary);
+      transform: translateY(-3px);
       box-shadow: var(--shadow-md);
     }
 
@@ -552,10 +595,12 @@
       transition: var(--transition);
     }
 
-    .project-card:hover {
-      transform: translateY(-6px);
+    /* On click or mouse hover: lift card and change border color */
+    .project-card:hover,
+    .project-card:active {
+      transform: translateY(-5px);
       box-shadow: var(--shadow-md);
-      border-color: rgba(18, 78, 63, 0.25);
+      border-color: var(--primary);
     }
 
     .project-image {
@@ -569,11 +614,12 @@
     .project-image img {
       width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.4s ease;
     }
 
-    .project-card:hover .project-image img {
-      transform: scale(1.05);
+    .project-card:hover .project-image img,
+    .project-card:active .project-image img {
+      transform: scale(1.04);
     }
 
     .project-placeholder {
@@ -644,7 +690,8 @@
       transition: var(--transition);
     }
 
-    .project-link:hover {
+    .project-link:hover,
+    .project-link:active {
       color: var(--primary-hover);
       gap: 12px;
     }
@@ -668,10 +715,11 @@
       transition: var(--transition);
     }
 
-    .video-card:hover {
-      transform: translateY(-5px);
+    .video-card:hover,
+    .video-card:active {
+      transform: translateY(-4px);
       box-shadow: var(--shadow-md);
-      border-color: rgba(18, 78, 63, 0.2);
+      border-color: var(--primary);
     }
 
     .video-wrapper,
@@ -696,7 +744,6 @@
       background: #000;
     }
 
-    /* Keeps portrait and landscape videos inside the same responsive frame */
     .video-play-overlay {
       position: absolute;
       inset: 0;
@@ -709,8 +756,9 @@
       transition: background 0.25s ease;
     }
 
-    .video-play-overlay:hover {
-      background: rgba(0, 0, 0, 0.32);
+    .video-play-overlay:hover,
+    .video-play-overlay:active {
+      background: rgba(0, 0, 0, 0.35);
     }
 
     .video-play-button {
@@ -728,8 +776,9 @@
       transition: transform 0.25s ease, background 0.25s ease;
     }
 
-    .video-play-overlay:hover .video-play-button {
-      transform: scale(1.08);
+    .video-play-overlay:hover .video-play-button,
+    .video-play-overlay:active .video-play-button {
+      transform: scale(1.1);
       background: var(--primary-hover);
     }
 
@@ -773,10 +822,12 @@
       cursor: pointer;
     }
 
-    .cert-card:hover {
-      transform: translateY(-6px);
+    /* Click and hover card movement */
+    .cert-card:hover,
+    .cert-card:active {
+      transform: translateY(-5px);
       box-shadow: var(--shadow-md);
-      border-color: rgba(18, 78, 63, 0.25);
+      border-color: var(--primary);
     }
 
     .cert-image {
@@ -809,12 +860,14 @@
       transition: var(--transition);
     }
 
-    .cert-card:hover .cert-overlay {
+    .cert-card:hover .cert-overlay,
+    .cert-card:active .cert-overlay {
       opacity: 1;
     }
 
-    .cert-card:hover .cert-image img {
-      transform: scale(1.05);
+    .cert-card:hover .cert-image img,
+    .cert-card:active .cert-image img {
+      transform: scale(1.04);
     }
 
     .cert-placeholder {
@@ -963,9 +1016,10 @@
       border: 1px solid #ffffff;
     }
 
-    .btn-light:hover {
+    .btn-light:hover,
+    .btn-light:active {
       background: #f1f5f9;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
     /* ── CONTACT ── */
@@ -997,10 +1051,13 @@
       transition: var(--transition);
     }
 
-    .contact-item:hover {
+    /* Contact box click & hover movement */
+    .contact-item:hover,
+    .contact-item:active {
       border-color: var(--primary);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       box-shadow: var(--shadow-sm);
+      background: #ffffff;
     }
 
     .contact-item i {
@@ -1214,7 +1271,6 @@
         <div class="experience-timeline">
 
           <!-- Experience Item 1 -->
-
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
@@ -1231,7 +1287,7 @@
             </div>
           </div>
 
-         <!-- Experience Item 2 -->
+          <!-- Experience Item 2 -->
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
@@ -1248,35 +1304,9 @@
             </div>
           </div>
 
-          
-
-          <!-- ================================================================= -->
-          <!-- 💡 TO ADD A NEW ROLE: COPY & PASTE THIS TEMPLATE INSIDE THE TIMELINE -->
-          <!-- ================================================================= -->
-          <!--
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="timeline-header">
-                <h3>Job Title Here</h3>
-                <span class="timeline-date">Month Year – Present</span>
-              </div>
-              <h4 class="timeline-company">Company / Organization Name</h4>
-              <ul class="timeline-duties">
-                <li>Key responsibility or achievement statement.</li>
-                <li>Another key responsibility or quantifiable result.</li>
-              </ul>
-            </div>
-          </div>
-          -->
-
         </div>
       </section>
 
-
-
-
-      
       <!-- TECHNICAL CAPABILITIES SECTION -->
       <section id="skills" class="reveal-section">
         <div class="section-title">
@@ -1318,7 +1348,6 @@
           </article>
         </div>
       </section>
-
 
       <!-- PROJECTS SECTION -->
       <section id="projects" class="reveal-section">
@@ -1565,33 +1594,6 @@
             </div>
           </div>
 
-          <!-- ================================================================= -->
-          <!-- 💡 TO ADD A NEW VIDEO: COPY & PASTE EITHER TEMPLATE BELOW INSIDE THIS GRID -->
-          <!-- ================================================================= -->
-          <!--
-          YOUTUBE VIDEO TEMPLATE:
-          <div class="video-card">
-            <div class="video-wrapper">
-              <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID" title="Video Title" allowfullscreen></iframe>
-            </div>
-            <div class="video-info">
-              <h3>Video Title</h3>
-              <p>Description of the video content.</p>
-            </div>
-          </div>
-
-          GOOGLE DRIVE VIDEO TEMPLATE:
-          <div class="video-card">
-            <div class="video-wrapper">
-              <iframe src="https://drive.google.com/file/d/YOUR_DRIVE_FILE_ID/preview" title="Video Title" allow="autoplay" allowfullscreen></iframe>
-            </div>
-            <div class="video-info">
-              <h3>Video Title</h3>
-              <p>Description of the video content.</p>
-            </div>
-          </div>
-          -->
-
         </div>
       </section>
 
@@ -1605,6 +1607,7 @@
         <div class="certificates-grid">
 
           <div class="cert-group-label"><strong>Core Professional Credentials</strong><span>Prioritized certifications most relevant to analytics, BI, and data science roles.</span></div>
+          
           <div class="cert-card" onclick="openLightbox('Microso Power BI Data Analyst.jpg', 'Microsoft Power BI Data Analyst')">
             <div class="cert-image">
               <img src="Microso Power BI Data Analyst.jpg" alt="Microsoft Power BI Data Analyst" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
@@ -1638,7 +1641,7 @@
               <p class="cert-issuer">Professional Certification</p>
             </div>
           </div>
-          <!-- Certificate 9 -->
+
           <div class="cert-card" onclick="openLightbox('GOOGLE CERTIFICATE.jpg', 'Google Analytics Certification (2026)')">
             <div class="cert-image">
               <img src="GOOGLE CERTIFICATE.jpg" alt="Google Analytics Certification" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
@@ -1674,6 +1677,7 @@
           </div>
 
           <div class="cert-group-label" style="margin-top: 2rem;"><strong>Additional Learning & Credentials</strong><span>Supporting training and continuing education.</span></div>
+          
           <div class="cert-card" onclick="openLightbox('Certificate_AI basics.jpg', 'AI Basics Certification')">
             <div class="cert-image">
               <img src="Certificate_AI basics.jpg" alt="AI Basics Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
@@ -1707,7 +1711,6 @@
               <p class="cert-issuer">Craft Innovation Hub</p>
             </div>
           </div>
-
 
           <div class="cert-card" onclick="openLightbox('Certificate_Internet Search.jpg', 'Internet Search & Research Certification')">
             <div class="cert-image">
@@ -1776,7 +1779,6 @@
               <p class="cert-issuer">Professional Certification</p>
             </div>
           </div>
-
 
           <div class="cert-card" onclick="openLightbox('mercor-certificate.png', 'Introduction to Agents')">
             <div class="cert-image">
@@ -1931,11 +1933,11 @@
       });
     });
 
-    // 4. INTERSECTION OBSERVER FOR ANIMATION & SIDEBAR ACTIVE SELECTION
+    // 4. SIDEBAR ACTIVE LINK HIGHLIGHTER (REMOVED ACCIDENTAL EXIT ANIMATION LOGIC)
     const observerOptions = {
       root: null,
-      rootMargin: '0px 0px -20% 0px',
-      threshold: 0.15
+      rootMargin: '0px 0px -30% 0px',
+      threshold: 0.1
     };
 
     const sections = document.querySelectorAll('.reveal-section');
@@ -1943,14 +1945,7 @@
 
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // ANIMATION: Fade/slide in when entering viewport, fade/slide out when leaving
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
-        }
-
-        // SIDEBAR ACTIVE HIGHLIGHT: Highlight ONLY the currently visible section
+        // Keeps section completely visible when intersecting, never toggles out or hides on mobile scroll
         if (entry.isIntersecting && entry.target.id) {
           const currentId = entry.target.id;
           navLinks.forEach(link => {
